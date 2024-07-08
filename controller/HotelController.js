@@ -38,17 +38,15 @@ module.exports = {
   },
 
   async innerJoinTest(req, res) {
-    let innerJoinQuery =
-      "SELECT * from hotel_list as hotellist  INNER JOIN  hotel_room_list as roomlist ON hotellist.hotel_id = roomlist.hotel_id WHERE hotellist.hotel_id = 1";
-
-    db.query(innerJoinQuery, (err, result) => {
-      if (err) throw err;
-
+    let hotelId = req.body.hotelid;
+    let innerJoinQuery = "SELECT * from hotel_list WHERE hotel_id = ?";
+    db.query(innerJoinQuery, [hotelId], (err, result) => {
+      if (err) throw err;  
       res.json(result);
     });
   },
 
-  async getHotel(req , res) {
+  async getHotel(req, res) {
     let getHotels = "SELECT * FROM `hotel_list`";
     db.query(getHotels, (err, result) => {
       if (err) throw err;
@@ -56,12 +54,23 @@ module.exports = {
     });
   },
 
-  async getRoom(req , res) {
+  async getRoom(req, res) {
     const hotelId = req.body.hotelid;
     let getHotels = "SELECT * FROM `hotel_room_list` where hotel_id = ?";
-    db.query(getHotels,[hotelId] ,(err, result) => {
+    db.query(getHotels, [hotelId], (err, result) => {
       if (err) throw err;
       res.json(result);
     });
   },
+
+  async getHotelReserve(req, res){
+    const {hotelId , hotelName, hotelTypeRoom ,dateDepart, dateReturn , totalPayment} = req.body;
+    let getReserve = "INSERT INTO `hotel_reserve`(`hotel_id`, `hotel_name`, `hotel_type_room`, `date_depart`, `date_return`, `total_payment`) VALUES (?,?,?,?,?,?)";
+    db.query(getReserve , [hotelId , hotelName,hotelTypeRoom, dateDepart, dateReturn, totalPayment] , (err, result) => {
+      if(err) throw err;
+      res.json(result);
+    })
+
+    
+  }
 };

@@ -36,13 +36,14 @@ app.post("/register", Auth.UserRegister);
 app.post("/login", Auth.AuthLogin);
 
 app.get("/getuser", User.getAllData);
-app.post("/testinner", Hotel.innerJoinTest);
+app.post("/gethotelinfo", Hotel.innerJoinTest);
 
 app.post("/addhotel", Hotel.addHotel);
 app.post("/addroom", Hotel.addRoom);
 app.get("/selectroom", Hotel.mergingRoom);
 app.get("/gethotels" , Hotel.getHotel);
 app.post("/getrooms" , Hotel.getRoom);
+app.post("/addreserve" , Hotel.getHotelReserve);
 
 //*jwt middleware
 app.use(token.verifyToken);
