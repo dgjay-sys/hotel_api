@@ -58,7 +58,7 @@ module.exports = {
     const hotelId = req.body.hotelid;
     let getHotels = "SELECT * FROM `hotel_room_list` where hotel_id = ?";
     db.query(getHotels, [hotelId], (err, result) => {
-      if (err) throw err;
+      if (err) throw err; 
       res.json(result);
     });
   },

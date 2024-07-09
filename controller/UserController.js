@@ -26,15 +26,31 @@ module.exports = {
     );
   },
 
-  async updateNameUser(req, res) {
+  //user details
+  async updateFnameUser(req, res) {
     const newFname = req.body.newFname;
+    //const newLname = req.body.newLname;
+    const user_id = req.body.userId;
+    const sqlUpdate =
+      "Update users SET fname = ?  WHERE user_id = ?";
+    await db.query(
+      sqlUpdate,
+      [newFname , user_id],
+      function (error, result) {
+        if (error) console.log(error);
+        res.json(result);
+      }
+    );
+  },
+
+  async updateLnameUser(req, res) {
     const newLname = req.body.newLname;
     const user_id = req.body.userId;
     const sqlUpdate =
-      "Update users SET fname = ? , lname = ? WHERE user_id = ?";
+      "Update users SET lname = ?  WHERE user_id = ?";
     await db.query(
       sqlUpdate,
-      [newFname, newLname, user_id],
+      [newLname , user_id],
       function (error, result) {
         if (error) console.log(error);
         res.json(result);
