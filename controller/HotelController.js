@@ -64,9 +64,9 @@ module.exports = {
   },
 
   async getHotelReserve(req, res){
-    const {hotelId , hotelName, hotelTypeRoom ,dateDepart, dateReturn , totalPayment} = req.body;
-    let getReserve = "INSERT INTO `hotel_reserve`(`hotel_id`, `hotel_name`, `hotel_type_room`, `date_depart`, `date_return`, `total_payment`) VALUES (?,?,?,?,?,?)";
-    db.query(getReserve , [hotelId , hotelName,hotelTypeRoom, dateDepart, dateReturn, totalPayment] , (err, result) => {
+    const {hotelId , userId ,hotelName, hotelTypeRoom ,dateDepart, dateReturn , totalPayment} = req.body;
+    let getReserve = "INSERT INTO `hotel_reserve`(`hotel_id`, `user_id`,`hotel_name`, `hotel_type_room`, `date_depart`, `date_return`, `total_payment` , `reserve_status`) VALUES (?,?,?,?,?,?,?,?)";
+    db.query(getReserve , [hotelId,userId , hotelName,hotelTypeRoom, dateDepart, dateReturn, totalPayment, "pending"] , (err, result) => {
       if(err) throw err;
       res.json(result);
     })

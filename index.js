@@ -30,6 +30,7 @@ app.listen(8000 || process.env.PORT, function () {
 const User = require("./controller/UserController");
 const Auth = require("./controller/AuthController");
 const Hotel = require("./controller/HotelController");
+const hReserve =require("./controller/HotelReserveController")
 const UserController = require("./controller/UserController");
 
 app.post("/register", Auth.UserRegister);
@@ -44,6 +45,7 @@ app.get("/selectroom", Hotel.mergingRoom);
 app.get("/gethotels", Hotel.getHotel);
 app.post("/getrooms", Hotel.getRoom);
 app.post("/addreserve", Hotel.getHotelReserve);
+app.post("/getreserve" , hReserve.hotelReserve);
 
 //*jwt middleware
 app.use(token.verifyToken);
