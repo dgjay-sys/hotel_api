@@ -56,6 +56,7 @@ app.put("/updateusername", User.updateUsernameUser);
 app.put("/updatepassword", User.updateUserPassword);
 app.delete("/deleteuser", User.deleteUser);
 app.post("/updatefname", User.updateFnameUser);
-app.post("/updatelname", UserController.updateLnameUser);
+app.post("/updatelname", User.updateLnameUser);
+app.put("/cancelbook" , User.cancelBook);
 
 //*hotel ad route

@@ -128,5 +128,16 @@ module.exports = {
             res.json(result);
           }
       )
+  },
+  //hotel update
+  async cancelBook(req,res){
+    user_id = req.body.userId;
+    reserve_id = req.body.reserveId;
+
+    let updateQuery = "UPDATE `hotel_reserve` SET  `reserve_status`= 'cancel' WHERE user_id = ? and reserve_id =?";
+    await db.query(updateQuery, [user_id , reserve_id] , function(err, result){
+        if(err) res.send(err);
+        res.json(result);
+    })
   }
 };
