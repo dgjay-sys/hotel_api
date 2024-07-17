@@ -46,7 +46,7 @@ app.get("/gethotels", Hotel.getHotel);
 app.post("/getrooms", Hotel.getRoom);
 app.post("/addreserve", Hotel.getHotelReserve);
 app.post("/getreserve" , hReserve.hotelReserve);
-
+app.put("/cancelbook" , User.cancelBook);
 //*jwt middleware
 app.use(token.verifyToken);
 //#protected route
@@ -57,6 +57,6 @@ app.put("/updatepassword", User.updateUserPassword);
 app.delete("/deleteuser", User.deleteUser);
 app.post("/updatefname", User.updateFnameUser);
 app.post("/updatelname", User.updateLnameUser);
-app.put("/cancelbook" , User.cancelBook);
+
 
 //*hotel ad route

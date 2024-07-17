@@ -62,8 +62,8 @@ module.exports = {
     password = hashSync(password, salt);
 
     regisQuery =
-      "INSERT INTO users (fname,lname , username, password) VALUES (?, ?, ?, ?)";
-    const user = await db.query(regisQuery, [fname, lname, username, password]);
+      "INSERT INTO users (fname,lname , username, password, role) VALUES (?, ?, ?, ?, ?)";
+    const user = await db.query(regisQuery, [fname, lname, username, password , 'user']);
 
     const result = user.insertId;
 
